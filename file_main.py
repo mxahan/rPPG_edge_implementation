@@ -8,7 +8,7 @@ data = data.reshape(-1, 100, 100, 40)
 
 data = np.array(data, dtype=np.float32)
 
-interperter  =  tflite.Interpreter(model_path =  'masud_lit_f16.tflite')
+interpreter  =  tflite.Interpreter(model_path =  'masud_lit_f16.tflite')
 
 
 interpreter.allocate_tensors()
