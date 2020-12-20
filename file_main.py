@@ -3,7 +3,6 @@ import numpy as np
 import tflite_runtime.interpreter as tflite 
 
 import time
-start_time = time.time()
 
 data= np.load('test_data.npz.npy')
 
@@ -13,7 +12,7 @@ data = np.array(data, dtype=np.float32)
 
 interpreter  =  tflite.Interpreter(model_path =  'masud_lit_f16.tflite')
 
-
+start_time=time.time()
 interpreter.allocate_tensors()
 
 
