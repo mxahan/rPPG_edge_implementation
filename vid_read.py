@@ -27,7 +27,7 @@ def video_reader():
        
         data.append(gray)
         
-        cv2.imshow('frame', gray)
+        #cv2.imshow('frame', gray)
         
         
         if cv2.waitKey(1) & 0xFF == ord('q'):
