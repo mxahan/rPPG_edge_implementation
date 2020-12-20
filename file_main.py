@@ -2,6 +2,9 @@ import numpy as np
 
 import tflite_runtime.interpreter as tflite 
 
+import time
+start_time = time.time()
+
 data= np.load('test_data.npz.npy')
 
 data = data.reshape(-1, 100, 100, 40)
@@ -34,3 +37,5 @@ predictions = interpreter.get_tensor(output_index)
 
 
 np.save('something', predictions)
+
+print("--- %s seconds ---" % (time.time() - start_time))
