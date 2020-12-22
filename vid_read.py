@@ -5,7 +5,7 @@ def video_reader():
     data = []
     im_size = (100,100)
     
-    cap = cv2.VideoCapture('im_test2.MOV')
+    cap = cv2.VideoCapture('jn_test.mp4')
     
 
     
