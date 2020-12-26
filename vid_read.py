@@ -1,11 +1,11 @@
 import cv2
 import numpy as np
 
-def video_reader():
+def video_reader(def_video = 'jn_test.Mov'):
     data = []
     im_size = (100,100)
     
-    cap = cv2.VideoCapture('jn_test.MOV')
+    cap = cv2.VideoCapture(def_video)
     
 
     

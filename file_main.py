@@ -4,20 +4,92 @@ import tflite_runtime.interpreter as tflite
 
 import time
 
-data= np.load('test_data.npz.npy')
+from vid_read import  video_reader
 
-data = data.reshape(-1, 100, 100, 40)
+#%% Prepocessing dataset
 
-data = np.array(data, dtype=np.float32)
 
-interpreter  =  tflite.Interpreter(model_path =  'masud_lit_f16.tflite')
+for _ in range(3):
+    start_time =  time.time()
+    fp, datt = video_reader('im_test2.MOV')
+    print("video_cv time --- %s seconds ---" % (time.time() - start_time))
+
+
+print('\n')
+
+datt = np.float32(np.random.rand(15*40, 100, 100))
+
+
+start_time = time.time()
+
+datt = datt[:,:,:,np.newaxis]
+
+frame_cons = 40 # how many frame to consider at a time
+im_size = (100,100)
+
+trainX =[]
+
+for i in range(np.int(datt.shape[0]/40)):
+    
+    img = np.reshape(datt[i*frame_cons:(i+1)*frame_cons,:,:,0], [frame_cons, *im_size])
+    img = np.moveaxis(img, 0,-1)
+    trainX.append(img)
+
+
+trainX = np.array(trainX, dtype = np.float32)
+trainX = (trainX-trainX.min())
+
+data = trainX/ trainX.max()
+
+print("Prepocessing time -- %s seconds -- " % (time.time() - start_time)+ " size of "+str(i+1) )
+
+print('\n')
+
+
+#%% load data from the origin
+
+
+
+for _ in range(3):
+    start_time = time.time()
+    data= np.load('test_data.npz.npy')
+    data = data.reshape(-1, 100, 100, 40)
+    data = np.array(data, dtype=np.float32)
+    print("Data_load (prepocessed) time --- %s seconds ---" % (time.time() - start_time))
+
+
+print('\n')
+
+#%% alternatively synthetic data
+"""
+data = np.float32(np.random.rand(16,100,100,40))
+"""
+
+#%% Model inference
+
+batch_size, _, _, _ = data.shape
+
+for _ in range(3):
+    start_time = time.time()
+    interpreter  =  tflite.Interpreter(model_path =  'masud_lit_f16.tflite')
+    print("Model_load time --- %s seconds ---" % (time.time() - start_time))
+
+
+
+print('\n')
+
 
 start_time=time.time()
-interpreter.allocate_tensors()
+
+
 
 
 input_index = interpreter.get_input_details()[0]["index"]
 output_index = interpreter.get_output_details()[0]["index"]
+
+interpreter.resize_tensor_input(input_index, [batch_size,100,100,40])
+interpreter.allocate_tensors()
+
 
 # format input_data
 # interpreter set tensor
@@ -38,3 +110,30 @@ predictions = interpreter.get_tensor(output_index)
 np.save('something', predictions)
 
 print("--- %s seconds ---" % (time.time() - start_time))
+
+print('\n')
+
+#%% Looped version : Aveage inference time
+
+start_time1 =  time.time()
+for i in range(5):
+    data = np.float32(np.random.rand(16,100,100,40))
+    batch_size, _, _, _ = data.shape
+    interpreter  =  tflite.Interpreter(model_path =  'masud_lit_f16.tflite')
+    start_time=time.time()
+    input_index = interpreter.get_input_details()[0]["index"]
+    output_index = interpreter.get_output_details()[0]["index"]
+    interpreter.resize_tensor_input(input_index, [batch_size,100,100,40])
+    interpreter.allocate_tensors()
+    interpreter.set_tensor(input_index, data)
+    interpreter.invoke()
+    predictions = interpreter.get_tensor(output_index)
+    np.save('something', predictions)
+    
+    print("Inference time --- %s seconds ---" % (time.time() - start_time))
+    
+
+
+print('\n')
+
+print("Total time -- %s seconds -- " % (time.time() - start_time1)+ "batch size of "+str(i+1) )
