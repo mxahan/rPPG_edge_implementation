@@ -17,31 +17,35 @@ for _ in range(3):
 
 print('\n')
 
-datt = np.float32(np.random.rand(15*40, 100, 100))
+datt = np.float32(np.random.rand(16*40, 100, 100))
+
+np.save('test_data.npz',datt)
 
 
-start_time = time.time()
-
-datt = datt[:,:,:,np.newaxis]
-
-frame_cons = 40 # how many frame to consider at a time
-im_size = (100,100)
-
-trainX =[]
-
-for i in range(np.int(datt.shape[0]/40)):
+for _ in range(3):
+    datt = np.float32(np.random.rand(16*40, 100, 100))
+    start_time = time.time()
     
-    img = np.reshape(datt[i*frame_cons:(i+1)*frame_cons,:,:,0], [frame_cons, *im_size])
-    img = np.moveaxis(img, 0,-1)
-    trainX.append(img)
-
-
-trainX = np.array(trainX, dtype = np.float32)
-trainX = (trainX-trainX.min())
-
-data = trainX/ trainX.max()
-
-print("Prepocessing time -- %s seconds -- " % (time.time() - start_time)+ " size of "+str(i+1) )
+    datt = datt[:,:,:,np.newaxis]
+    
+    frame_cons = 40 # how many frame to consider at a time
+    im_size = (100,100)
+    
+    trainX =[]
+    
+    for i in range(np.int(datt.shape[0]/40)):
+        
+        img = np.reshape(datt[i*frame_cons:(i+1)*frame_cons,:,:,0], [frame_cons, *im_size])
+        img = np.moveaxis(img, 0,-1)
+        trainX.append(img)
+    
+    
+    trainX = np.array(trainX, dtype = np.float32)
+    trainX = (trainX-trainX.min())
+    
+    data = trainX/ trainX.max()
+    
+    print("Prepocessing time -- %s seconds -- " % (time.time() - start_time)+ " size of "+str(i+1) )
 
 print('\n')
 
@@ -109,7 +113,7 @@ predictions = interpreter.get_tensor(output_index)
 
 np.save('something', predictions)
 
-print("--- %s seconds ---" % (time.time() - start_time))
+print("warmup time --- %s seconds ---" % (time.time() - start_time))
 
 print('\n')
 
