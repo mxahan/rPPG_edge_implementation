@@ -18,6 +18,8 @@ for _ in range(3):
 print('\n')
 
 datt = np.float32(np.random.rand(16*40, 100, 100))
+datt = datt.astype(np.float16)
+
 
 np.save('test_data.npz',datt)
 
@@ -121,7 +123,10 @@ print('\n')
 
 start_time1 =  time.time()
 for i in range(5):
-    data = np.float32(np.random.rand(16,100,100,40))
+    data = np.float16(np.random.rand(16,100,100,40))
+    data = data.astype(np.float32)
+
+
     batch_size, _, _, _ = data.shape
     interpreter  =  tflite.Interpreter(model_path =  'masud_lit_f16.tflite')
     start_time=time.time()
