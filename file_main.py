@@ -11,11 +11,14 @@ from vid_read import  video_reader
 
 for _ in range(3):
     start_time =  time.time()
-    fp, datt = video_reader('im_test2.MOV')
+    fp, datt = video_reader('output.mov')
     print("video_cv time --- %s seconds ---" % (time.time() - start_time))
-
+    print(fp)
+    print(datt.shape)
 
 print('\n')
+
+
 
 datt = np.float32(np.random.rand(16*40, 100, 100))
 datt = datt.astype(np.float16)

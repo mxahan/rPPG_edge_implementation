@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-def video_reader(def_video = 'jn_test.Mov'):
+def video_reader(def_video = 'jn_test.mp4'):
     data = []
     im_size = (100,100)
     
