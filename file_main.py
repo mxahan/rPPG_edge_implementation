@@ -9,7 +9,7 @@ from vid_read import  video_reader
 #%% Prepocessing dataset
 
 
-for _ in range(3):
+for _ in range(1):
     start_time =  time.time()
     fp, datt = video_reader('output.mov')
     print("video_cv time --- %s seconds ---" % (time.time() - start_time))
@@ -23,8 +23,8 @@ print('\n')
 datt = np.array(datt, dtype =np.float32)
 
 datt =datt[0:640]
-# datt = datt.astype(np.float16)
-
+#datt = datt.astype(np.float16)
+#datt=datt.astype(np.float32)
 
 
 
@@ -79,12 +79,14 @@ data = np.float32(np.random.rand(16,100,100,40))
 """
 
 #%% Model inference
-
+#data=data.astype(np.float16)
+#data=data.astype(np.float32)
 batch_size, _, _, _ = data.shape
+print(data.shape)
 
 for _ in range(3):
     start_time = time.time()
-    interpreter  =  tflite.Interpreter(model_path =  'masud_lit_f16.tflite')
+    interpreter  =  tflite.Interpreter(model_path =  'emon_lite_p.tflite')
     print("Model_load time --- %s seconds ---" % (time.time() - start_time))
 
 
@@ -135,7 +137,7 @@ for i in range(5):
 
 
     batch_size, _, _, _ = data.shape
-    interpreter  =  tflite.Interpreter(model_path =  'masud_lit_f16.tflite')
+    interpreter  =  tflite.Interpreter(model_path =  'emon_lite_p.tflite')
     start_time=time.time()
     input_index = interpreter.get_input_details()[0]["index"]
     output_index = interpreter.get_output_details()[0]["index"]
