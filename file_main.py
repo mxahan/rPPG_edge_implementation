@@ -158,7 +158,19 @@ print("Total time -- %s seconds -- " % (time.time() - start_time1)+ "batch size 
 
 
 #%% date and time 
+# https://www.programiz.com/python-programming/datetime/current-datetime
 from datetime import date
 
 today = date.today()
 print("Today's date:", today)
+
+from datetime import datetime
+
+# datetime object containing current date and time
+now = datetime.now()
+ 
+print("now =", now)
+
+# dd/mm/YY H:M:S
+dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+print("date and time =", dt_string)
