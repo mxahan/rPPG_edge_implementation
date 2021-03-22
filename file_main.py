@@ -155,3 +155,10 @@ for i in range(5):
 print('\n')
 
 print("Total time -- %s seconds -- " % (time.time() - start_time1)+ "batch size of "+str(i+1) )
+
+
+#%% date and time 
+from datetime import date
+
+today = date.today()
+print("Today's date:", today)

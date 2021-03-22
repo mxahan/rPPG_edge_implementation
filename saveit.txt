@@ -1,0 +1,32 @@
+video_cv time --- 4.659552812576294 seconds ---
+30.0
+(659, 100, 100)
+
+
+Prepocessing time -- 0.018290281295776367 seconds --  size of 16
+Prepocessing time -- 0.016209125518798828 seconds --  size of 16
+Prepocessing time -- 0.012584924697875977 seconds --  size of 16
+
+
+Data_load (prepocessed) time --- 0.005394697189331055 seconds ---
+Data_load (prepocessed) time --- 0.005829572677612305 seconds ---
+Data_load (prepocessed) time --- 0.005215644836425781 seconds ---
+
+
+(16, 100, 100, 40)
+Model_load time --- 0.00025534629821777344 seconds ---
+Model_load time --- 0.0001552104949951172 seconds ---
+Model_load time --- 0.00013494491577148438 seconds ---
+
+
+warmup time --- 0.2567136287689209 seconds ---
+
+
+Inference time --- 0.21157073974609375 seconds ---
+Inference time --- 0.21398091316223145 seconds ---
+Inference time --- 0.21936821937561035 seconds ---
+Inference time --- 0.2191455364227295 seconds ---
+Inference time --- 0.21750855445861816 seconds ---
+
+
+Total time -- 1.1035988330841064 seconds -- batch size of 5
