@@ -25,6 +25,6 @@ dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 print("date and time =", dt_string)
 
 
-HR= np.array([75]) # find the result from the output data FFT!!!!
+HR= np.array([81]) # find the result from the output data FFT!!!!
 
 print("Your HR is ", HR[0])
