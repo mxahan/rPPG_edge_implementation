@@ -18,6 +18,9 @@ The primary contribution of this paper is designing and prototyping a \textit{re
 <img src="https://github.com/mxahan/rPPG_edge_implementation/blob/main/Images/overview_approach.png" width="50%" height="300px"/>
 Figure: Overview diagram of RhythmEdge development.
 
+<img src="https://github.com/mxahan/rPPG_edge_implementation/blob/main/Images/demo_ov.jpg" width="50%" height="300px"/>
+Figure: Overview of demo rPPG system.
+
 ## System development Instruction
 
 We are planning to upload a demo paper (accepted in SmartComp) providing the details to develop a rPPG system using off-the-shelf edge devices.
@@ -28,7 +31,7 @@ We are planning to upload a demo paper (accepted in SmartComp) providing the det
 (Until screen is terminating writing shows up)
 - If command doesn't work, use the follwing solution as shown in [link](https://github.com/f0cal/google-coral/issues/2)
 
-**Solution:** 
+**Solution:**
 ```
 sudo screen /dev/ttyUSB0 115200
 ```
@@ -50,7 +53,7 @@ Fswebcam -d /dev/video(select appropriate port no) image_name.jpg
 ### Video setup
 - Check supported format:
  ```
-v4l2-ctl --list-formats-ext --device /dev/video1 or video2 
+v4l2-ctl --list-formats-ext --device /dev/video1 or video2
 ```
 - Check the supported resolution and framerate
   - Command for setting up video capture:
@@ -67,11 +70,11 @@ ffmpeg -t 6 -f v4l2 -framerate 30 -video_size 1920x1080 -c:v mjpeg -i /dev/video
 ffmpeg -t 6 -f v4l2 -framerate 30 -video_size 1920x1080 -c:v mjpeg -i /dev/video0 output.mov
 ```
 
-  - Alternative: 
+  - Alternative:
   ```
   ffmpeg -t 6 -f v4l2 -framerate 90 -video_size 1280x720 -input_format mjpeg -i /dev/video1 mjpeg.mkv
   ```
-  
+
 ### OpenCV install in Coral
 [Setup link](https://krakensystems.co/blog/2020/doing-machine-vision-on-google-coral)
 - Video Preprocessing using OpenCV
@@ -84,8 +87,8 @@ ffmpeg -t 6 -f v4l2 -framerate 30 -video_size 1920x1080 -c:v mjpeg -i /dev/video
 ### Real time implementation
 [Sample code](https://www.pyimagesearch.com/2019/05/13/object-detection-and-image-classification-with-google-coral-usb-accelerator/)
 
-### Set up for the Jetson Nano 
-[Package Installation Instructions](https://medium.com/@coachweichun/jeston-nano-install-opencv-python-numpy-scipy-matplotlib-pandas-kit-fa6bde651eac) 
+### Set up for the Jetson Nano
+[Package Installation Instructions](https://medium.com/@coachweichun/jeston-nano-install-opencv-python-numpy-scipy-matplotlib-pandas-kit-fa6bde651eac)
 
 ### Numpy install technique
 [Follow this link](https://yanwei-liu.medium.com/tflite-on-jetson-nano-c480fdf9ac2)
