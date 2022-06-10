@@ -77,7 +77,7 @@ ffmpeg -t 6 -f v4l2 -framerate 30 -video_size 1920x1080 -c:v mjpeg -i /dev/video
 - Video Preprocessing using OpenCV
   1. Save video in supported format with fps of 30
   1. Import video_reader function form vid_read
-  1. Check the f value and data shape (e.g. 30, 100:100:frame)
+  1. Check the f value and data shape (e.g. 30, 100 : 100 : frame)
   1. Crop to data to required shape
   1. Run file_main.py
 
