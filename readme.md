@@ -27,10 +27,10 @@ We are planning to upload a demo paper (accepted in SmartComp) providing the det
 
 (Until screen is terminating writing shows up)
 - If command doesn't work, use the follwing solution as shown in [link](https://github.com/f0cal/google-coral/issues/2)
+
 **Solution:** 
 ```
 sudo screen /dev/ttyUSB0 115200
-
 ```
 After that follow instructions again.
 
@@ -41,25 +41,38 @@ Check under /dev folder whether the camera is detected or not. Usually the coral
 
 ### Taking picture
 - Use fswebcam
-  - sudo apt-get install fswebcam
-  - Fswebcam -d /dev/video(select appropriate port no) image_name.jpg
+```
+sudo apt-get install fswebcam
+Fswebcam -d /dev/video(select appropriate port no) image_name.jpg
+```
 - Push the saved image to github to visualize
 
 ### Video setup
 - Check supported format:
+ ```
 v4l2-ctl --list-formats-ext --device /dev/video1 or video2 
-Check the supported resolution and framerate
-Command for setting up video capture:
+```
+- Check the supported resolution and framerate
+  - Command for setting up video capture:
+```
 ffmpeg -t 3 -f v4l2 -framerate 30 -video_size 640x480 -i /dev/video2 im_test1.MOV
-Keep the original camera format (.MOV in case of AKaso)
+```
+- Keep the original camera format (.MOV in case of AKaso)
+  - If the video fps drops below the desired rate, use the following solution
 
-https://stackoverflow.com/questions/44960632/ffmpeg-records-5-frames-per-second-on-a-device-that-cheese-records-at-20-fps
-
+    [fos restoration](https://stackoverflow.com/questions/44960632/ffmpeg-records-5-frames-per-second-on-a-device-that-cheese-records-at-20-fps)
+```
 ffmpeg -t 6 -f v4l2 -framerate 30 -video_size 1920x1080 -c:v mjpeg -i /dev/video0 -c:v copy output.mov
 
 ffmpeg -t 6 -f v4l2 -framerate 30 -video_size 1920x1080 -c:v mjpeg -i /dev/video0 output.mov
+```
 
-Alternative: ffmpeg -t 6 -f v4l2 -framerate 90 -video_size 1280x720 -input_format mjpeg -i /dev/video1 mjpeg.mkv
+  - Alternative: 
+  ```
+    ffmpeg -t 6 -f v4l2 -framerate 90 -video_size 1280x720 -input_format mjpeg -i /dev/video1 mjpeg.mkv
+    ```
+    
+    
 
 
 
