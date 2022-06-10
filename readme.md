@@ -22,4 +22,23 @@ Figure: Overview diagram of RhythmEdge development.
 
 We are planning to upload a demo paper (accepted in SmartComp) providing the details to develop a rPPG system using off-the-shelf edge devices.
 
-https://docs.google.com/document/d/1Z_AH7GMaAPSuIusfDuZmsyi9cO-gQdbu1Wh7HDXoY7w/edit?usp=sharing
+### Set Up for Coral Dev board
+[Instructions:](https://coral.ai/docs/dev-board/get-started/#requirements)
+(Until screen is terminating writing shows up)
+- If command doesn't work
+**Solution:** sudo screen /dev/ttyUSB0 115200 (https://github.com/f0cal/google-coral/issues/2)
+After that follow instructions again.
+
+
+### Camera setup
+Check under /dev folder whether the camera is detected or not. Usually the coral camera is dev/video0. Others will be either video1 or video2.
+- Memory card should be removed first (For AKASO EX7000) and mode should be ‘PC camera not USB’.
+
+### Taking picture
+- Use fswebcam
+  - sudo apt-get install fswebcam
+  - Fswebcam -d /dev/video(select appropriate port no) image_name.jpg
+- Push the saved image to github to visualize
+
+
+
