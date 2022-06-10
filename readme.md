@@ -60,7 +60,7 @@ ffmpeg -t 3 -f v4l2 -framerate 30 -video_size 640x480 -i /dev/video2 im_test1.MO
 - Keep the original camera format (.MOV in case of AKaso)
   - If the video fps drops below the desired rate, use the following solution
 
-    [fos restoration](https://stackoverflow.com/questions/44960632/ffmpeg-records-5-frames-per-second-on-a-device-that-cheese-records-at-20-fps)
+    [fps restoration](https://stackoverflow.com/questions/44960632/ffmpeg-records-5-frames-per-second-on-a-device-that-cheese-records-at-20-fps)
 ```
 ffmpeg -t 6 -f v4l2 -framerate 30 -video_size 1920x1080 -c:v mjpeg -i /dev/video0 -c:v copy output.mov
 
@@ -69,9 +69,38 @@ ffmpeg -t 6 -f v4l2 -framerate 30 -video_size 1920x1080 -c:v mjpeg -i /dev/video
 
   - Alternative: 
   ```
-    ffmpeg -t 6 -f v4l2 -framerate 90 -video_size 1280x720 -input_format mjpeg -i /dev/video1 mjpeg.mkv
-    ```
-    
+  ffmpeg -t 6 -f v4l2 -framerate 90 -video_size 1280x720 -input_format mjpeg -i /dev/video1 mjpeg.mkv
+  ```
+  
+### OpenCV install in Coral
+[Setup link](https://krakensystems.co/blog/2020/doing-machine-vision-on-google-coral)
+- Video Preprocessing using OpenCV
+  1. Save video in supported format with fps of 30
+  1. Import video_reader function form vid_read
+  1. Check the f value and data shape (e.g. 30, 100:100:frame)
+  1. Crop to data to required shape
+  1. Run file_main.py
+
+Real_time implementation:
+Sample code:
+https://www.pyimagesearch.com/2019/05/13/object-detection-and-image-classification-with-google-coral-usb-accelerator/ 
+
+
+
+Set up for the Jetson Nano 
+
+Install Package: https://medium.com/@coachweichun/jeston-nano-install-opencv-python-numpy-scipy-matplotlib-pandas-kit-fa6bde651eac 
+
+
+
+Numpy install technique:
+Follow this link:  https://yanwei-liu.medium.com/tflite-on-jetson-nano-c480fdf9ac2
+
+Just add ‘sudo’ before all the pip3 commands.
+
+Memory:
+Jetson nano: sudo jtop (select MEM)
+
     
 
 
