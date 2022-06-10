@@ -13,9 +13,9 @@ The primary contribution of this paper is designing and prototyping a \textit{re
 
 ## System Overview
 
-<img src="https://github.com/mxahan/rPPG_edge_implementation/blob/main/Images/prototype_.png" width="100%" height="850px"/>
+<img src="https://github.com/mxahan/rPPG_edge_implementation/blob/main/Images/prototype_.png" width="50%" height="300px"/>
 
-<img src="https://github.com/mxahan/rPPG_edge_implementation/blob/main/Images/overview_approach.png" width="100%" height="850px"/>
+<img src="https://github.com/mxahan/rPPG_edge_implementation/blob/main/Images/overview_approach.png" width="50%" height="300px"/>
 Figure: Overview diagram of RhythmEdge development.
 
 ## System development Instruction
